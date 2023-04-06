@@ -11,7 +11,7 @@ public class Parser {
     @Option(name = "-o", usage = "name of output file")
     private String outFile;
     @Option(name = "-a", usage = "number of symbols")
-    private int num;
+    private String num;
     @Option(name = "-t", usage = "for superfluous symbols")
     private boolean t;
     @Option(name = "-r", usage = "alignment of text")
@@ -19,11 +19,11 @@ public class Parser {
 
     public static void main(String[] args) {
         String[] command  = new String[5];
-        command[0] = "-a number";
+        command[0] = "-a 0";
         command[1] = "-t";
         command[2] = "-r";
         command[3] = "-o outfile";
-        command[4] = "inputFile";
+        command[4] = "input/Example.txt";
         new Parser().parse(command);
     }
 
@@ -31,12 +31,11 @@ public class Parser {
         CmdLineParser parser = new CmdLineParser(this);
         try {
             parser.parseArgument(args);
-            System.out.println();
+            Transpose.trans(r,t,Integer.parseInt(num.substring(3)),inputFile,outFile);
         } catch (CmdLineException e) {
             System.err.println(e.getMessage());
             parser.printUsage(System.err);
         }
-        transpose.trans(r, t, num, outFile);
     }
 
 }
