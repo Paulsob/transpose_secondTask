@@ -1,4 +1,4 @@
-// [-a num] [-t] [-r] [-o outfile] [file]
+// [-a num] [-t] [-r] [-o outfile.txt] [file]
 
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineException;
@@ -6,7 +6,7 @@ import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
 public class Parser {
-    @Argument(metaVar = "inputFile.txt")
+    @Argument(metaVar = "inputFile.txt.txt")
     private String inputFile;
     @Option(name = "-o", usage = "name of output file")
     private String outFile;
@@ -22,7 +22,7 @@ public class Parser {
         command[0] = "-a 0";
         command[1] = "-t";
         command[2] = "-r";
-        command[3] = "-o outfile";
+        command[3] = "-o outfile.txt";
         command[4] = "input/Example.txt";
         new Parser().parse(command);
     }
