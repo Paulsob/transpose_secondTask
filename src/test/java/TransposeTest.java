@@ -26,33 +26,6 @@ class TransposeTest {
         Assertions.assertEquals("file", par.inputFile);
     }
 
-//    @Test
-//    void transTest() throws IOException {
-//       Transpose transpose = new Transpose();
-//       String str = "A B C \\n D E ";
-//       String[][] result = transpose.transposing(true, 3, false);
-//       assertEquals("A D \\nB E \\nC \\n", result);
-//       Transpose.trans(true, false, 3, "input/Example.txt", "input/outfile.txt");
-//    }
-
-    @Test
-    void test1() throws IOException {
-//        String[] inp = {"input/Example.txt", "-o outfile", "-a 2", "-t", "-r"};
-//        Parser par = new Parser();
-//        par.parse(inp);
-        Transpose transpose = new Transpose();
-//        transpose.trans(par.r, par.t, par.num.substring(3), par.inputFile, par.outfile);
-        transpose.main("input/Example.txt outfile 2 -t -r".split(" "));
-        BufferedReader brNew = new BufferedReader(new FileReader("outfile"));
-        int c = brNew.read();
-        String answer = "";
-        while (c != -1) {
-            answer += (char)c;
-            c = brNew.read();
-        }
-        assertEquals("A D \nB E \nC \n", answer);
-    }
-
     @Test
     void test2() throws IOException {
         Transpose transpose = new Transpose();
@@ -65,5 +38,19 @@ class TransposeTest {
             c = brNew.read();
         }
         assertNotEquals("A B \nD E \nC \n", answer);
+    }
+
+    @Test
+    void test3() throws IOException {
+        Transpose transpose = new Transpose();
+        transpose.main("input/Example.txt outfile 2 -t -r".split(" "));
+        BufferedReader brNew = new BufferedReader(new FileReader("outfile"));
+        int c = brNew.read();
+        String answer = "";
+        while (c != -1) {
+            answer += (char)c;
+            c = brNew.read();
+        }
+        assertNotEquals("A D \nE B \nC \n", answer);
     }
 }

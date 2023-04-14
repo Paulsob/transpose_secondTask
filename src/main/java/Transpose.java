@@ -8,11 +8,15 @@ public class Transpose {
     public int columns;
     public int rows;
 
+    private boolean r;
+    private boolean t;
+    String num;
+
     public void main(String[] args) {
         new Parser().parse(args);
     }
 
-    public static void trans(boolean r, boolean t, String num, String inputFile, String outfile) {
+    public void trans(String inputFile, String outfile) {
         try {
             BufferedReader input;
             BufferedWriter output;
@@ -24,7 +28,7 @@ public class Transpose {
             File out = new File(outfile);
             out.createNewFile();
             output = new BufferedWriter(new FileWriter(out));
-            String[][] answer = transpose.transposing(r, num, t);
+            String[][] answer = transpose.transposing();
             for (int i = 0; i < answer.length; i++) {
                 for (int j = 0; j < answer[i].length; j++) {
                     if (answer[i][j] != "") {
@@ -57,7 +61,7 @@ public class Transpose {
         this.arrayList = arrayList;
     }
 
-    public String[][] transposing(boolean r, String num, boolean t) throws IOException {
+    public String[][] transposing() throws IOException {
         ArrayList<String[]> array = this.arrayList;
         String[][] answer = new String[columns][rows];
         String word;
@@ -85,3 +89,5 @@ public class Transpose {
         return answer;
     }
 }
+
+
