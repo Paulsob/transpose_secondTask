@@ -12,7 +12,7 @@ public class Transpose {
         new Parser().parse(args);
     }
 
-    public static void trans(boolean r, boolean t, int num, String inputFile, String outfile) {
+    public static void trans(boolean r, boolean t, String num, String inputFile, String outfile) {
         try {
             BufferedReader input;
             BufferedWriter output;
@@ -57,12 +57,12 @@ public class Transpose {
         this.arrayList = arrayList;
     }
 
-    public String[][] transposing(boolean r, int num, boolean t) throws IOException {
+    public String[][] transposing(boolean r, String num, boolean t) throws IOException {
         ArrayList<String[]> array = this.arrayList;
         String[][] answer = new String[columns][rows];
         String word;
-        if (num == 0) num = 10;
-
+        int number = Integer.parseInt(num);
+        if (number == 0) number = 10;
         for (int i = 0; i < rows; i++) {
             System.out.println(array);
             for (int j = 0; j < columns; j++) {
@@ -71,12 +71,12 @@ public class Transpose {
                 } catch (IndexOutOfBoundsException e) {
                     word = "";
                 }
-                if (num != 0) {
+                if (number != 0) {
                     if (t) {
-                        if (word.length() > num) word = word.substring(0, num);
+                        if (word.length() > number) word = word.substring(0, number);
                     } else {
-                        if (r) word = " ".repeat(max(0, word.length() - num)) + word;
-                        else word = word + " ".repeat(max(0, word.length() - num));
+                        if (r) word = " ".repeat(max(0, word.length() - number)) + word;
+                        else word = word + " ".repeat(max(0, word.length() - number));
                     }
                 }
                 answer[j][i] = word;

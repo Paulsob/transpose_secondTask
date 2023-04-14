@@ -22,13 +22,13 @@ public class Parser {
 
     public static void main(String[] args) {
      //   new Parser().parse("-a 7 -t -r -o outfile input/Example.txt".split(" "));
-        String[] command  = new String[5];
-        command[0] = "-r";
-        command[1] = "-t";
-        command[2] = "-a 7";
-        command[3] = "-o outfile";
-        command[4] = "input/Example.txt";
-        new Parser().parse(command);
+//        String[] command  = new String[5];
+//        command[0] = "-r";
+//        command[1] = "-t";
+//        command[2] = "-a 7";
+//        command[3] = "-o outfile";
+//        command[4] = "input/Example.txt";
+        new Parser().parse(args);
     }
 
     public void parse(String[] args) {
@@ -39,7 +39,7 @@ public class Parser {
             System.out.println(t);
             System.out.println(num);
             System.out.println(outfile);
-            Transpose.trans(r, t, Integer.parseInt(num.substring(3)), inputFile, outfile.substring(3));
+            Transpose.trans(r, t, num.substring(3), inputFile, outfile.substring(3));
         } catch (CmdLineException e) {
             System.err.println(e.getMessage());
             parser.printUsage(System.err);
